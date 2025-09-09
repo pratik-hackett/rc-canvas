@@ -114,7 +114,7 @@
             <ul class="list-disc pl-6 space-y-2 text-gray-700">
                 <li><strong class="text-gray-900">System Foundation:</strong> The current system (SAP enhancement package 7 for SAP ERP 6.0) is on a direct conversion path to SAP S/4HANA 2023. This avoids the need for a separate upgrade project beforehand.</li>
                 <li><strong class="text-gray-900">SAP Readiness Check:</strong> The report confirms that a comprehensive analysis has been performed on your specific system, identifying all key technical and functional prerequisites.</li>
-                <li><strong class="text-gray-900">Identified Risks:</strong> While the conversion is technically possible, the report has highlighted specific areas (e.g., Simplification Items, Custom Code) that require proactive planning and mitigation to ensure a smooth transition.</li>
+                <li><strong class="text-gray-900">Identified Risks:</strong> While the conversion is technically possible, the report has highlighted specific areas (e.g., <b style="color: red;">Incompatible Add-on for Vistex</b>, Simplification Items, Custom Code) that require proactive planning and mitigation to ensure a smooth transition.</li>
             </ul>
             <div class="logo-footer">
                 <img src="https://www.thehackettgroup.com/wp-content/themes/hackett/dist/images/logo.svg" alt="The Hackett Group Logo" class="h-8">
@@ -150,18 +150,24 @@
         </div>
 
         <!-- Slide 3: Technical Details - Custom Code Analysis -->
-        <div id="slide3" class="slide hidden">
+        <div id="slide3" class="slide hidden relative">
             <h1 class="text-3xl font-extrabold text-center mb-8">Technical Details - Custom Code Analysis</h1>
-            <h3 class="text-center text-xl font-bold mb-4 text-gray-800">Overall Custom Code Volume: Approximately <span class="text-blue-600">4,004</span> custom objects identified.</h3>
+
+            <!-- Overlay for missing data
+            <div class="absolute inset-0 flex items-center justify-center p-8 bg-white/90 rounded-2xl z-10">
+                <p class="text-center text-4xl font-extrabold text-red-600">CCA Data is from DEV.</p>
+            </div> -->
+
+            <h3 class="text-center text-xl font-bold mb-4 text-gray-800">Overall Custom Code Volume: Approximately <span class="text-blue-600">2500</span> custom objects identified.</h3>
             <div class="flex flex-col md:flex-row items-center justify-center gap-8">
                 <div class="w-64 h-64 bg-gray-100 rounded-full relative flex items-center justify-center">
-                    <div class="absolute w-full h-full rounded-full" style="background-image: conic-gradient(#3f51b5 0% 72%, #ff7043 72% 100%);"></div>
-                    <div class="relative text-5xl font-extrabold text-white">72%</div>
+                    <div class="absolute w-full h-full rounded-full" style="background-image: conic-gradient(#3f51b5 0% 62%, #ff7043 72% 100%);"></div>
+                    <div class="relative text-5xl font-extrabold text-white">60%</div>
                 </div>
                 <div class="flex-1">
                     <ul class="list-disc pl-6 space-y-3 text-lg text-gray-700">
-                        <li><strong class="text-gray-900">Mitigation via Automation:</strong> ~72% of custom code objects can be adjusted automatically or with minimal manual effort using tools like the ABAP Test Cockpit (ATC).</li>
-                        <li><strong class="text-gray-900">Developer Intervention:</strong> Approximately 28% (or ~1,121 objects) will require manual review and remediation by your technical development team.</li>
+                        <li><strong class="text-gray-900">Mitigation via Automation:</strong> ~60% of custom code objects can be adjusted automatically or with minimal manual effort using tools like the ABAP Test Cockpit (ATC).</li>
+                        <li><strong class="text-gray-900">Developer Intervention:</strong> Approximately 40% (or ~1,000 objects) will require manual review and remediation by your technical development team.</li>
                     </ul>
                 </div>
             </div>
@@ -185,12 +191,12 @@
                 <div class="text-center">
                     <div class="w-24 bg-indigo-500 rounded-t-xl" style="height: 8rem;"></div>
                     <p class="mt-2 font-bold text-gray-700">Target HANA Database</p>
-                    <p class="text-gray-500">~650 GB</p>
+                    <p class="text-gray-500">~549 GB</p>
                 </div>
                 <div class="text-center">
                     <div class="w-24 bg-orange-400 rounded-t-xl" style="height: 14rem;"></div>
                     <p class="mt-2 font-bold text-gray-700">Custom Code & Objects</p>
-                    <p class="text-gray-500">~1,121 items</p>
+                    <p class="text-gray-500">~2,492 items</p>
                 </div>
             </div>
             <div class="logo-footer">
