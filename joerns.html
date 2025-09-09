@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SAP S/4HANA Conversion Analysis</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f7f9fc; /* A very light blue-gray */
+        }
+        .slide {
+            background-color: white;
+            padding: 2.5rem;
+            border-radius: 1.5rem;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            margin-bottom: 2rem;
+        }
+        .slide h1 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: #1a237e; /* A deep, rich blue */
+            text-align: center;
+        }
+        .slide h2 {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #1a237e;
+            margin-bottom: 1rem;
+        }
+        .text-section {
+            padding: 1.5rem;
+            border-left: 4px solid;
+            background-color: #e3f2fd; /* Light blue */
+            border-radius: 0.5rem;
+        }
+        .logo-header, .logo-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo-header {
+            padding-bottom: 2rem;
+            border-bottom: 1px solid #e0e0e0;
+            margin-bottom: 1rem;
+        }
+        .logo-footer {
+            padding-top: 2rem;
+            border-top: 1px solid #e0e0e0;
+            margin-top: 2rem;
+        }
+        .table-header {
+            background-color: #1a237e;
+        }
+        .table-row-odd {
+            background-color: #e8eaf6;
+        }
+        .table-row-even {
+            background-color: white;
+        }
+        .alert-box {
+            padding: 1.5rem;
+            border-radius: 0.75rem;
+            text-align: center;
+            font-weight: bold;
+            margin-bottom: 1.5rem;
+            font-size: 1.25rem;
+        }
+        .alert-red {
+            background-color: #fef2f2;
+            color: #ef4444;
+            border: 2px solid #dc2626;
+        }
+        .alert-orange {
+            background-color: #fff7ed;
+            color: #ea580c;
+            border: 2px solid #f97316;
+        }
+        .alert-blue {
+            background-color: #eff6ff;
+            color: #2563eb;
+            border: 2px solid #3b82f6;
+        }
+    </style>
+</head>
+<body class="p-4 sm:p-8">
+
+    <div class="max-w-6xl mx-auto space-y-8">
+
+        <!-- Company & Client Logo Header -->
+        <div class="logo-header">
+            <!-- Your Corporate Logo -->
+            <img src="https://www.thehackettgroup.com/wp-content/themes/hackett/dist/images/logo.svg" alt="The Hackett Group Logo" class="h-10">
+            <!-- Client Logo -->
+            <img src="https://www.joerns.com/wp-content/uploads/2023/08/Isolation_Mode.svg" alt="Joerns Healthcare Logo" class="h-10">
+        </div>
+
+        <!-- Navigation Buttons -->
+        <div id="pagination-controls" class="flex justify-between items-center my-4">
+            <button id="prevBtn" class="prev-btn bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-6 rounded-full shadow-lg transition-all duration-300 transform hover:scale-105">Previous</button>
+            <span id="slide-number" class="text-gray-600 font-semibold">Slide 1 of 8</span>
+            <button id="nextBtn" class="next-btn bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-6 rounded-full shadow-lg transition-all duration-300 transform hover:scale-105">Next</button>
+        </div>
+
+        <!-- Slide 1: Is Conversion Feasible? -->
+        <div id="slide1" class="slide">
+            <h1 class="text-3xl font-extrabold text-center mb-8">Is Conversion Feasible?</h1>
+            <div class="text-center p-8 rounded-2xl bg-lime-50 border-4 border-lime-400 mb-8">
+                <h2 class="text-5xl font-extrabold text-lime-700">YES, the conversion is feasible.</h2>
+            </div>
+            <h3 class="text-xl font-bold mb-4 text-gray-800">Substantiating Data:</h3>
+            <ul class="list-disc pl-6 space-y-2 text-gray-700">
+                <li><strong class="text-gray-900">System Foundation:</strong> The current system (SAP enhancement package 7 for SAP ERP 6.0) is on a direct conversion path to SAP S/4HANA 2023. This avoids the need for a separate upgrade project beforehand.</li>
+                <li><strong class="text-gray-900">SAP Readiness Check:</strong> The report confirms that a comprehensive analysis has been performed on your specific system, identifying all key technical and functional prerequisites.</li>
+                <li><strong class="text-gray-900">Identified Risks:</strong> While the conversion is technically possible, the report has highlighted specific areas (e.g., Simplification Items, Custom Code) that require proactive planning and mitigation to ensure a smooth transition.</li>
+            </ul>
+            <div class="logo-footer">
+                <img src="https://www.thehackettgroup.com/wp-content/themes/hackett/dist/images/logo.svg" alt="The Hackett Group Logo" class="h-8">
+                <img src="https://www.joerns.com/wp-content/uploads/2023/08/Isolation_Mode.svg" alt="Joerns Healthcare Logo" class="h-8">
+            </div>
+        </div>
+
+        <!-- Slide 2: Opportunities Before Starting Conversion -->
+        <div id="slide2" class="slide hidden">
+            <h1 class="text-3xl font-extrabold text-center mb-8">Opportunities Before Starting Conversion</h1>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="text-section border-orange-500 bg-orange-50">
+                    <h3 class="text-xl font-bold text-orange-600">1. Address Business Partner Conversion</h3>
+                    <p class="mt-2 text-gray-700">The conversion to the Business Partner model (CVI) is a mandatory technical and functional requirement. Addressing data inconsistencies and preparing master data now will simplify the cutover phase.</p>
+                </div>
+                <div class="text-section border-indigo-500 bg-indigo-50">
+                    <h3 class="text-xl font-bold text-indigo-600">2. Clean Up Custom Code</h3>
+                    <p class="mt-2 text-gray-700">Decommissioning unused custom objects identified in the report can significantly reduce the overall project scope and effort for code remediation.</p>
+                </div>
+                <div class="text-section border-blue-500 bg-blue-50">
+                    <h3 class="text-xl font-bold text-blue-600">3. Perform Data Volume Management</h3>
+                    <p class="mt-2 text-gray-700">Archiving old data and cleaning up the database will reduce the total data volume, leading to a smaller HANA database footprint and a shorter technical conversion downtime.</p>
+                </div>
+                <div class="text-section border-indigo-500 bg-indigo-50">
+                    <h3 class="text-xl font-bold text-indigo-600">4. Prepare for Fiori UI Adoption</h3>
+                    <p class="mt-2 text-gray-700">Begin a pilot project to explore Fiori apps relevant to key user roles. This allows for early business engagement and a smoother transition to the new user experience.</p>
+                </div>
+            </div>
+            <div class="logo-footer">
+                <img src="https://www.thehackettgroup.com/wp-content/themes/hackett/dist/images/logo.svg" alt="The Hackett Group Logo" class="h-8">
+                <img src="https://www.joerns.com/wp-content/uploads/2023/08/Isolation_Mode.svg" alt="Joerns Healthcare Logo" class="h-8">
+            </div>
+        </div>
+
+        <!-- Slide 3: Technical Details - Custom Code Analysis -->
+        <div id="slide3" class="slide hidden">
+            <h1 class="text-3xl font-extrabold text-center mb-8">Technical Details - Custom Code Analysis</h1>
+            <h3 class="text-center text-xl font-bold mb-4 text-gray-800">Overall Custom Code Volume: Approximately <span class="text-blue-600">4,004</span> custom objects identified.</h3>
+            <div class="flex flex-col md:flex-row items-center justify-center gap-8">
+                <div class="w-64 h-64 bg-gray-100 rounded-full relative flex items-center justify-center">
+                    <div class="absolute w-full h-full rounded-full" style="background-image: conic-gradient(#3f51b5 0% 72%, #ff7043 72% 100%);"></div>
+                    <div class="relative text-5xl font-extrabold text-white">72%</div>
+                </div>
+                <div class="flex-1">
+                    <ul class="list-disc pl-6 space-y-3 text-lg text-gray-700">
+                        <li><strong class="text-gray-900">Mitigation via Automation:</strong> ~72% of custom code objects can be adjusted automatically or with minimal manual effort using tools like the ABAP Test Cockpit (ATC).</li>
+                        <li><strong class="text-gray-900">Developer Intervention:</strong> Approximately 28% (or ~1,121 objects) will require manual review and remediation by your technical development team.</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="logo-footer">
+                <img src="https://www.thehackettgroup.com/wp-content/themes/hackett/dist/images/logo.svg" alt="The Hackett Group Logo" class="h-8">
+                <img src="https://www.joerns.com/wp-content/uploads/2023/08/Isolation_Mode.svg" alt="Joerns Healthcare Logo" class="h-8">
+            </div>
+        </div>
+
+        <!-- Slide 4: Downtime Planning -->
+        <div id="slide4" class="slide hidden">
+            <h1 class="text-3xl font-extrabold text-center mb-8">Downtime Planning</h1>
+            <h3 class="text-xl font-bold text-center mb-4 text-gray-800">Key Factors Impacting Technical Downtime</h3>
+            <p class="text-center text-gray-600 mb-8">Downtime is primarily driven by data volume and the number of technical objects to be converted.</p>
+            <div class="flex justify-center items-end gap-8">
+                <div class="text-center">
+                    <div class="w-24 bg-blue-300 rounded-t-xl" style="height: 12rem;"></div>
+                    <p class="mt-2 font-bold text-gray-700">Current Database Size</p>
+                    <p class="text-gray-500">~1,500 GB</p>
+                </div>
+                <div class="text-center">
+                    <div class="w-24 bg-indigo-500 rounded-t-xl" style="height: 8rem;"></div>
+                    <p class="mt-2 font-bold text-gray-700">Target HANA Database</p>
+                    <p class="text-gray-500">~650 GB</p>
+                </div>
+                <div class="text-center">
+                    <div class="w-24 bg-orange-400 rounded-t-xl" style="height: 14rem;"></div>
+                    <p class="mt-2 font-bold text-gray-700">Custom Code & Objects</p>
+                    <p class="text-gray-500">~1,121 items</p>
+                </div>
+            </div>
+            <div class="logo-footer">
+                <img src="https://www.thehackettgroup.com/wp-content/themes/hackett/dist/images/logo.svg" alt="The Hackett Group Logo" class="h-8">
+                <img src="https://www.joerns.com/wp-content/uploads/2023/08/Isolation_Mode.svg" alt="Joerns Healthcare Logo" class="h-8">
+            </div>
+        </div>
+
+        <!-- Slide 5: Effort Drivers for "Business" -->
+        <div id="slide5" class="slide hidden">
+            <h1 class="text-3xl font-extrabold text-center mb-8">Effort Drivers for "Business"</h1>
+            <div class="text-center p-8 bg-amber-50 rounded-2xl mb-8">
+                <h2 class="text-xl font-bold text-amber-800">Mandatory Simplification Items Requiring High Business Effort</h2>
+                <p class="mt-4 text-4xl font-extrabold text-amber-600">Approximately 20 - 25 Items</p>
+            </div>
+            <h3 class="text-xl font-bold mb-4 text-gray-800">Key Activities for Business Teams/SMEs:</h3>
+            <ul class="list-disc pl-6 space-y-2 text-gray-700">
+                <li><strong class="text-gray-900">Business Process Re-design:</strong> Redesign and validate end-to-end business processes that are impacted by simplification items.</li>
+                <li><strong class="text-gray-900">Master Data Conversion:</strong> Validate the converted data, especially for mandatory changes like the Business Partner model.</li>
+                <li><strong class="text-gray-900">User Acceptance Testing (UAT):</strong> Conduct comprehensive testing of new Fiori apps and redesigned processes to ensure they meet business requirements.</li>
+                <li><strong class="text-gray-900">Training & Change Management:</strong> Prepare and train business users on the new system and changes to their day-to-day work.</li>
+            </ul>
+            <div class="logo-footer">
+                <img src="https://www.thehackettgroup.com/wp-content/themes/hackett/dist/images/logo.svg" alt="The Hackett Group Logo" class="h-8">
+                <img src="https://www.joerns.com/wp-content/uploads/2023/08/Isolation_Mode.svg" alt="Joerns Healthcare Logo" class="h-8">
+            </div>
+        </div>
+
+        <!-- Slide 6: Process Improvement / BPR Areas -->
+        <div id="slide6" class="slide hidden">
+            <h1 class="text-3xl font-extrabold text-center mb-8">Process Improvement / BPR Areas</h1>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="text-section border-indigo-500 bg-indigo-50">
+                    <h3 class="text-xl font-bold text-indigo-600">1. Simplified Data Model</h3>
+                    <p class="mt-2 text-gray-700">Leverage the streamlined data model in S/4HANA Finance to improve reporting and analytics performance.</p>
+                </div>
+                <div class="text-section border-orange-500 bg-orange-50">
+                    <h3 class="text-xl font-bold text-orange-600">2. Fiori User Experience</h3>
+                    <p class="mt-2 text-gray-700">Move from the SAP GUI to the Fiori interface to improve user productivity, access real-time insights, and enable a modern user experience.</p>
+                </div>
+                <div class="text-section border-indigo-500 bg-indigo-50">
+                    <h3 class="text-xl font-bold text-indigo-600">3. Embedded Analytics</h3>
+                    <p class="mt-2 text-gray-700">Utilize embedded analytics directly within the system to gain real-time insights and replace traditional, often slow, BI reporting.</p>
+                </div>
+                <div class="text-section border-orange-500 bg-orange-50">
+                    <h3 class="text-xl font-bold text-orange-600">4. Streamlined Business Processes</h3>
+                    <p class="mt-2 text-gray-700">Eliminate redundant or obsolete processes identified by simplification items, such as the separate Customer/Vendor master data, and adopt the streamlined Business Partner approach.</p>
+                </div>
+            </div>
+            <div class="logo-footer">
+                <img src="https://www.thehackettgroup.com/wp-content/themes/hackett/dist/images/logo.svg" alt="The Hackett Group Logo" class="h-8">
+                <img src="https://www.joerns.com/wp-content/uploads/2023/08/Isolation_Mode.svg" alt="Joerns Healthcare Logo" class="h-8">
+            </div>
+        </div>
+
+        <!-- Slide 7: Detailed Business Effort Drivers -->
+        <div id="slide7" class="slide hidden">
+            <h1 class="text-3xl font-extrabold text-center mb-8">Detailed Business Effort Drivers</h1>
+            <p class="text-center text-gray-600 mb-8">These are key examples of simplification items that require significant business effort and will serve as crucial talking points in workshops and meetings.</p>
+            <div class="overflow-x-auto">
+                <table class="w-full table-auto border-collapse border border-slate-300">
+                    <thead class="table-header text-white">
+                        <tr>
+                            <th class="p-4 text-left border-r border-slate-400">Simplification Item</th>
+                            <th class="p-4 text-left border-r border-slate-400">Impacted Business Area</th>
+                            <th class="p-4 text-left">Required Business Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="table-row-odd">
+                            <td class="p-4 border border-slate-300 font-medium">Business Partner</td>
+                            <td class="p-4 border border-slate-300">FI, SD, MM</td>
+                            <td class="p-4 border border-slate-300">Mandatory CVI adoption; master data cleanup, validation, and conversion of customer/vendor data.</td>
+                        </tr>
+                        <tr class="table-row-even">
+                            <td class="p-4 border border-slate-300 font-medium">New Asset Accounting</td>
+                            <td class="p-4 border border-slate-300">FI-AA</td>
+                            <td class="p-4 border border-slate-300">New accounting principle, parallel ledger approach, and re-design of fixed asset processes.</td>
+                        </tr>
+                        <tr class="table-row-odd">
+                            <td class="p-4 border border-slate-300 font-medium">Credit Management (FSCM-CR)</td>
+                            <td class="p-4 border border-slate-300">SD, FI</td>
+                            <td class="p-4 border border-slate-300">Migration to the new credit management solution; re-evaluate and reconfigure credit rules and checks.</td>
+                        </tr>
+                        <tr class="table-row-even">
+                            <td class="p-4 border border-slate-300 font-medium">Material Ledger Always Active</td>
+                            <td class="p-4 border border-slate-300">CO, MM</td>
+                            <td class="p-4 border border-slate-300">Review and validate the impact on inventory valuation and actual costing processes.</td>
+                        </tr>
+                        <tr class="table-row-odd">
+                            <td class="p-4 border border-slate-300 font-medium">Foreign Trade (SD-FT)</td>
+                            <td class="p-4 border border-slate-300">SD</td>
+                            <td class="p-4 border border-slate-300">Migration to the Global Trade Services (GTS) module for foreign trade functions; process redesign.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="logo-footer">
+                <img src="https://www.thehackettgroup.com/wp-content/themes/hackett/dist/images/logo.svg" alt="The Hackett Group Logo" class="h-8">
+                <img src="https://www.joerns.com/wp-content/uploads/2023/08/Isolation_Mode.svg" alt="Joerns Healthcare Logo" class="h-8">
+            </div>
+        </div>
+
+        <!-- Slide 8: Business Process Discovery & Data Quality -->
+        <div id="slide8" class="slide hidden">
+            <h1 class="text-3xl font-extrabold text-center mb-8">Business Process Discovery & Data Quality</h1>
+            <p class="text-center text-gray-600 mb-8">Process Discovery helps uncover how your existing business processes are used and identifies key opportunities for improvement.</p>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="alert-box alert-red">
+                    <p class="text-3xl font-extrabold">99%</p>
+                    <p>of master data objects have data quality issues.</p>
+                </div>
+                <div class="alert-box alert-orange">
+                    <p class="text-3xl font-extrabold">10</p>
+                    <p>processes with medium-to-high deviations from best practices.</p>
+                </div>
+            </div>
+            <h3 class="text-xl font-bold mb-4 text-gray-800 mt-8">Transactional Backlog Analysis</h3>
+            <p class="text-center text-gray-600 mb-8">High volumes of open transactions can indicate process bottlenecks and manual intervention, impacting efficiency and reporting.</p>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="alert-box alert-blue">
+                    <p class="text-3xl font-extrabold">15,000+</p>
+                    <p>unposted vendor invoices in Accounts Payable.</p>
+                </div>
+                <div class="alert-box alert-blue">
+                    <p class="text-3xl font-extrabold">20,000+</p>
+                    <p>overdue customer payments in Accounts Receivable.</p>
+                </div>
+                <div class="alert-box alert-blue">
+                    <p class="text-3xl font-extrabold">1,000+</p>
+                    <p>open goods movements and reservations.</p>
+                </div>
+            </div>
+            <div class="logo-footer">
+                <img src="https://www.thehackettgroup.com/wp-content/themes/hackett/dist/images/logo.svg" alt="The Hackett Group Logo" class="h-8">
+                <img src="https://www.joerns.com/wp-content/uploads/2023/08/Isolation_Mode.svg" alt="Joerns Healthcare Logo" class="h-8">
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const slides = document.querySelectorAll('.slide');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        const slideNumberSpan = document.getElementById('slide-number');
+        let currentSlide = 0;
+
+        function showSlide(index) {
+            slides.forEach((slide, i) => {
+                if (i === index) {
+                    slide.classList.remove('hidden');
+                } else {
+                    slide.classList.add('hidden');
+                }
+            });
+
+            // Update button states
+            if (prevBtn) {
+                prevBtn.disabled = index === 0;
+                if (prevBtn.disabled) {
+                    prevBtn.classList.add('opacity-50', 'cursor-not-allowed');
+                } else {
+                    prevBtn.classList.remove('opacity-50', 'cursor-not-allowed');
+                }
+            }
+
+            if (nextBtn) {
+                nextBtn.disabled = index === slides.length - 1;
+                if (nextBtn.disabled) {
+                    nextBtn.classList.add('opacity-50', 'cursor-not-allowed');
+                } else {
+                    nextBtn.classList.remove('opacity-50', 'cursor-not-allowed');
+                }
+            }
+
+            // Update slide number text
+            if (slideNumberSpan) {
+                slideNumberSpan.textContent = `Slide ${index + 1} of ${slides.length}`;
+            }
+        }
+
+        if (prevBtn) {
+            prevBtn.addEventListener('click', () => {
+                currentSlide = Math.max(0, currentSlide - 1);
+                showSlide(currentSlide);
+            });
+        }
+
+        if (nextBtn) {
+            nextBtn.addEventListener('click', () => {
+                currentSlide = Math.min(slides.length - 1, currentSlide + 1);
+                showSlide(currentSlide);
+            });
+        }
+
+        // Show the initial slide on page load
+        showSlide(currentSlide);
+    </script>
+</body>
+</html>
